@@ -44,12 +44,14 @@ const styles = StyleSheet.create({
         height: 300
     },
     price: {
+        fontFamily: 'open-sans-bold',
         fontSize: 24,
         color: '#8888',
         textAlign: 'center',
         marginVertical: 2
     },
     description: {
+        fontFamily: 'open-sans',
         fontSize: 16,
         textAlign: 'center',
         marginHorizontal: 7,
