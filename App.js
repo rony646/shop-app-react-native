@@ -7,9 +7,11 @@ import { Provider } from 'react-redux';
 
 
 import productsReducer from './store/reducers/products';
+import cartReducer from './store/reducers/cart';
 import ShopNavigator from './navigation/ShopNavigator';
 
 const rootReducer = combineReducers({
+  cart: cartReducer,
   products: productsReducer
 });
 
