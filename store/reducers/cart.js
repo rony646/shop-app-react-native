@@ -25,6 +25,7 @@ export default (state = intialState, action) => {
             } else {
                 updatedOrNewCartItem = new CartItem(1, prodPrice, prodTitle, prodPrice);
             };
+           
             return {
                 ...state,
                 items: {...state.items, [addedProduct.id]: updatedOrNewCartItem},
