@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { createStore, combineReducers } from 'redux';
-import AppLoading from 'expo-app-loading';
+import { AppLoading } from 'expo';
 import { useFonts } from 'expo-font'
 import { Provider } from 'react-redux';
 
