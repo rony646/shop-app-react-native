@@ -3,14 +3,12 @@ import {
     View, 
     Text, 
     Image, 
-    StyleSheet, 
-    Button, 
+    StyleSheet,
     TouchableOpacity, 
     TouchableNativeFeedback, 
     Platform 
 } from 'react-native';
 
-import Colors from '../../constants/Color';
 
 const ProductItem = props => {
 
@@ -23,7 +21,7 @@ const ProductItem = props => {
     return(
         <View style={styles.card}>
             <View stlye={styles.touchable}>
-                <TouchableComponent onPress={props.onViewDetail} useForeground>
+                <TouchableComponent onPress={props.onSelect} useForeground>
                     <View>
                         <View style={styles.imageContainer}>
                             <Image style={styles.image} source={{uri: props.image}}/>
@@ -33,8 +31,7 @@ const ProductItem = props => {
                             <Text style={styles.price}>${props.price.toFixed(2)}</Text>
                         </View>
                         <View style={styles.actions}>
-                            <Button color={Colors.primary} title="View Details" onPress={props.onViewDetail}/>
-                            <Button color={Colors.accent} title="To Cart" onPress={props.onAddToCart}/>
+                            {props.children}
                         </View>
                     </View>
                 </TouchableComponent>
