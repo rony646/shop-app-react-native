@@ -1,18 +1,24 @@
 import React from 'react';
 
 import { FlatList, Button } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import ProductItem from '../../components/shop/ProductItem';
 import HeaderButton from '../../components/UI/HeaderButton';
 import Colors from '../../constants/Color';
+import * as proudctActions from '../../store/actions/products';
 
 
 const UsersProductsScreen = props => {
 
     const userProducts = useSelector(state => state.products.userProducts);
+    const dispatch = useDispatch();
+
+    const editProductHandler = (id) => {
+        props.navigation.navigate('EditProduct', { productId: id })
+    };
 
     return(
         <FlatList 
@@ -25,8 +31,12 @@ const UsersProductsScreen = props => {
                     price={itemData.item.price} 
                     onSelect={() => {}}
                 >
-                    <Button color={Colors.primary} title="Edit" onPress={() => {}}/>
-                    <Button color={Colors.accent} title="Delete" onPress={() => {}}/>
+                    <Button color={Colors.primary} title="Edit" onPress={() => {
+                        editProductHandler(itemData.item.id)
+                    }}/>
+                    <Button color={Colors.accent} title="Delete" onPress={() => {
+                        dispatch(proudctActions.deleteProduct(itemData.item.id))
+                    }}/>
                 </ProductItem>}
         />
     )
@@ -41,7 +51,14 @@ UsersProductsScreen.navigationOptions = navData => {
                 iconName="md-menu"
                 onPress={() => navData.navigation.toggleDrawer()} 
             />
-        </HeaderButtons>
+        </HeaderButtons>,
+        headerRight:  <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                        <Item
+                            title="Add"
+                            iconName="md-create"
+                            onPress={() => navData.navigation.navigate('EditProduct')} 
+                        />
+                       </HeaderButtons>,
     }
 }
 
