@@ -92,9 +92,11 @@ export const createProduct = (title, description, imageUrl, price) => {
 };
 
 export const updateProduct = (id, title, description, imageUrl) => {
-  return async dispatch => {
+  return async (dispatch, getState) => {
+    const token = getState().auth.token
+    console.log('TOKEN: ', token)
     const response = await fetch(
-      `https://rn-complete-guite-default-rtdb.firebaseio.com/products/${id}.json`,
+      `https://rn-complete-guite-default-rtdb.firebaseio.com/products/${id}.json?auth=${token}`,
       {
         method: 'PATCH',
         headers: {
